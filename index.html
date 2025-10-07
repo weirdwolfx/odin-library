@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="./main.js" defer></script>
 </head>
 <body>
+    <div class="backdrop" aria-hidden="true"></div>
     <header>
         <h1 class="title">Library</h1>
     </header>
     <main>
         <button type="button" class="add-book">+</button>
-        <div class="display card">
+        <div class="display">
             <div class="book">
                 <p class="title">Title: Harry Potter</p>
                 <p class="author">Author: JK Rowling</p>
@@ -45,5 +47,22 @@
             </div>
         </div>
     </main>
+    <div class="popup-modal">
+        <form action="">
+            <div class="book-title popup">
+                <label for="book-title">Title</label>
+                <input type="text" id="book-title">
+            </div>
+            <div class="book-author popup">
+                <label for="book-author">Author</label>
+                <input type="text" id="book-author">
+            </div>
+            <div class="book-pages popup">
+                <label for="book-pages">Pages</label>
+                <input type="number" id="book-pages" min="1">
+            </div>
+            <button type="submit" class="submit-book-btn">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

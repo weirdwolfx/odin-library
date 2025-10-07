@@ -1,5 +1,10 @@
-const addBookButton = document.querySelector('.add-book.large');
+const addBookButton = document.querySelector('.add-book');
+const popupModal = document.querySelector('.popup-modal');
+const addBookForm = document.querySelector('.popup-modal > form');
+const backdrop = document.querySelector('.backdrop');
 
 addBookButton.addEventListener('click', () => {
-    document.body.style.backgroundColor = 'red';
+    popupModal.classList.toggle('show'); 
+    backdrop.classList.toggle('show');
+    addBookForm.reset();
 })
