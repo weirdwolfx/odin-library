@@ -196,4 +196,16 @@ button.submit-book-btn {
         border: none;
         padding: 0px;
     }
+
+    div.popup-modal.show {
+        z-index: 2;
+    }
+
+    div.backdrop.show {
+        z-index: 1;
+    }
+
+    button.add-book:disabled {
+        color: white;
+    }
 }
