@@ -9,6 +9,13 @@ img {
     max-width: 100%;
 }
 
+button {
+    border: none;
+    background-color: #fff;
+    display: block;
+    cursor: pointer;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -21,18 +28,20 @@ body {
     --light-theme-card-shadow: lightgrey;
     --light-theme-card-color: white;
     --light-theme-button-color: rgb(240, 240, 240);
+    --light-theme-text-color: black;
 }
 
 .backdrop {
     opacity: 0;
-}
-
-.backdrop.show {
     inset: 0px;
     position: fixed;
     background-color: black;
     pointer-events: none;
+}
+
+.backdrop.show {
     opacity: 0.4;
+    transition: opacity 300ms ease-in-out;
 }
 
 header {
@@ -65,11 +74,15 @@ button.add-book, button.submit-book-btn {
     background-color: var(--light-theme-button-color);
     font-size: 1rem;
     font-weight: bold;
-    cursor: pointer;
+    color: var(--light-theme-text-color);
 }
 
 button.add-book::after {
     content: " Add Book";
+}
+
+button.add-book:disabled {
+    color: var(--light-theme-text-color);
 }
 
 div.display {
@@ -89,6 +102,7 @@ div.display {
     padding: 15px;
     overflow: auto;
     background-color: var(--light-theme-card-color);
+    color: var(--light-theme-text-color);
 }
 
 
@@ -99,7 +113,7 @@ div.popup-modal {
     left: 50%;
     position: fixed;
     background-color: var(--light-theme-card-color);
-    padding: 1rem 1rem 30px;
+    padding: 35px 20px 25px;
     border-radius: 12px;
     border-top: 15px solid var(--light-theme-card-border);
     transform: translate(-50%, -100%);
@@ -115,7 +129,9 @@ div.popup-modal.show {
     transform: translate(-50%, -50%);
     opacity: 1;
     visibility: visible;
+    pointer-events: all;
 }
+
 
 .popup {
     display: flex;
@@ -140,9 +156,21 @@ div.popup-modal.show {
 button.submit-book-btn {
     background-color: coral;
     margin-top: 15px;
-    pointer-events: initial;
 }
 
+.close-btn {
+    line-height: 0;
+}
+
+.close-btn > svg {
+    height: 24px;
+    position: absolute;
+    top: 8px;
+    right: 12px; 
+}
+
+
+/* MEDIA QUERIES */
 
 
 @media screen and (width <= 600px) {
