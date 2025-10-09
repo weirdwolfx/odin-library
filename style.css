@@ -29,6 +29,7 @@ body {
     --light-theme-card-color: white;
     --light-theme-button-color: rgb(240, 240, 240);
     --light-theme-text-color: black;
+    --light-theme-popup-color: coral;
 }
 
 .backdrop {
@@ -126,7 +127,7 @@ div.popup-modal {
     background-color: var(--light-theme-card-color);
     padding: 35px 20px 25px;
     border-radius: 12px;
-    border-top: 15px solid var(--light-theme-card-border);
+    border-top: 15px solid var(--light-theme-popup-color);
     transform: translate(-50%, -100%);
     opacity: 0;
     pointer-events: none;
@@ -164,7 +165,7 @@ div.popup-modal.show {
 }
 
 button.submit-book-btn {
-    background-color: coral;
+    background-color: var(--light-theme-popup-color);
     margin-top: 15px;
 }
 
@@ -199,7 +200,7 @@ button.close-btn {
         right: 20px;
         width: 45px;
         height: 45px;
-        background-color: lightskyblue;
+        background-color: var(--light-theme-popup-color);
         border: none;
         padding: 0px;
     }
