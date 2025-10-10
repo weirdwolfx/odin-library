@@ -21,15 +21,28 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    gap: 20px;
 }
 
 body {
-    --light-theme-card-border: gold;
-    --light-theme-card-shadow: lightgrey;
-    --light-theme-card-color: white;
-    --light-theme-button-color: rgb(240, 240, 240);
-    --light-theme-text-color: black;
-    --light-theme-popup-color: coral;
+    --card-border: gold;
+    --card-shadow: lightgrey;
+    --card-color: white;
+    --button-color: rgb(240, 240, 240);
+    --text-color: black;
+    --popup-color: coral;
+    --header-color: white;
+}
+
+body.dark-theme {
+    --card-border: black;
+    --card-shadow: lightgrey;
+    --card-color: grey;
+    --button-color: blue;
+    --text-color: white;
+    --popup-color: coral;
+    --header-color: lime;
+    --header-text-color: white;
 }
 
 .backdrop {
@@ -38,6 +51,7 @@ body {
     position: fixed;
     background-color: black;
     pointer-events: none;
+    z-index: 1;
 }
 
 .backdrop.show {
@@ -47,8 +61,16 @@ body {
 
 header {
     min-width: 100%;
-    text-align: center;
     padding: 1rem;
+    box-shadow: 1px 1px 5px var(--card-shadow);
+    text-align: center;
+    position: relative;
+    background-color: var(--header-color);
+}
+
+header > .title {
+    font-size: 2.5rem;
+    color: var(--header-text-color);
 }
 
 main {
@@ -58,6 +80,20 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 25px;
+}
+
+
+/* THEME BUTTON */
+
+button.theme-btn {
+    position: absolute;
+    top: 50%;
+    right: min(calc(5vw - 5px), 35px);
+    transform: translate(0, -40%);
+}
+
+button.theme-btn span {
+    font-size: 30px;
 }
 
 
@@ -71,8 +107,8 @@ div.display {
 button.add-book, button.submit-book-btn {
     padding: 0.5em 1em;
     border-radius: 8px;
-    border: var(--light-theme-button-color);
-    background-color: var(--light-theme-button-color);
+    border: var(--button-color);
+    background-color: var(--button-color);
     font-size: 1rem;
     font-weight: bold;
 }
@@ -83,7 +119,7 @@ button.add-book::after {
 }
 
 button.add-book:disabled {
-    color: var(--light-theme-text-color);
+    color: var(--text-color);
 }
 
 button.add-book {
@@ -107,14 +143,14 @@ button.add-book span {
 /* BOOK CARD */
 
 .display .book {
-    border-left: 20px solid var(--light-theme-card-border);
+    border-left: 20px solid var(--card-border);
     border-radius: 10px;
-    box-shadow: 0px 0px 5px var(--light-theme-card-shadow);
+    box-shadow: 0px 0px 5px var(--card-shadow);
     text-align: left;
     padding: 15px;
     overflow: auto;
-    background-color: var(--light-theme-card-color);
-    color: var(--light-theme-text-color);
+    background-color: var(--card-color);
+    color: var(--text-color);
 }
 
 
@@ -124,10 +160,10 @@ div.popup-modal {
     top: 50%;
     left: 50%;
     position: fixed;
-    background-color: var(--light-theme-card-color);
+    background-color: var(--card-color);
     padding: 35px 20px 25px;
     border-radius: 12px;
-    border-top: 15px solid var(--light-theme-popup-color);
+    border-top: 15px solid var(--popup-color);
     transform: translate(-50%, -100%);
     opacity: 0;
     pointer-events: none;
@@ -135,6 +171,7 @@ div.popup-modal {
     transform-origin: center;
     transition: all 300ms ease-in-out;
     width: max(20%, 300px);
+    z-index: 10;
 }
 
 div.popup-modal.show {
@@ -152,7 +189,7 @@ div.popup-modal.show {
 
 .popup input {
     border: none;
-    background-color: var(--light-theme-button-color);
+    background-color: var(--button-color);
     border-radius: 16px;
     padding: 0.4em 0.75em;
     flex-grow: 1;
@@ -165,7 +202,7 @@ div.popup-modal.show {
 }
 
 button.submit-book-btn {
-    background-color: var(--light-theme-popup-color);
+    background-color: var(--popup-color);
     margin-top: 15px;
 }
 
@@ -183,6 +220,31 @@ button.close-btn {
 
 /* MEDIA QUERIES */
 
+@media (prefers-color-scheme: dark) {
+    body {
+        --card-border: #d29922;
+        --card-shadow: #5e5c71;
+        --card-color: lightgrey;
+        --button-color: orange;
+        --text-color: black;
+        --popup-color: coral;
+        --header-color: #474554;
+        --header-text-color: white;
+        background-color: #5e5c71;
+    }
+
+    body.light-theme {
+        --card-border: gold;
+        --card-shadow: lightgrey;
+        --card-color: white;
+        --button-color: rgb(240, 240, 240);
+        --text-color: black;
+        --popup-color: coral;
+        --header-color: white;
+        --header-text-color: black;
+        background-color: white;
+    }
+}
 
 @media screen and (width <= 600px) {
     div.display {
@@ -200,27 +262,19 @@ button.close-btn {
         right: 20px;
         width: 45px;
         height: 45px;
-        background-color: var(--light-theme-popup-color);
+        background-color: var(--popup-color);
         border: none;
         padding: 0px;
     }
 
     button.add-book span {
         font-size: 30px;
-        color: white;
+        color: var(--card-color);
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-weight: bold;
-    }
-
-    div.popup-modal.show {
-        z-index: 2;
-    }
-
-    div.backdrop.show {
-        z-index: 1;
     }
 
     button.add-book:disabled {
